@@ -11,7 +11,16 @@ $(".btn").click(function(event) {
   let userChosenColour = event.target.id;
   userClickedPattern.push(userChosenColour);
   playSound(userChosenColour);
+  animatePress(userChosenColour);
 });
+
+function animatePress(currentColor) {
+  let color = $("."+currentColor);
+  color.addClass("pressed");
+  setTimeout(function() {
+    color.removeClass("pressed");
+  }, 100);
+}
 
 function playSound(color) {
   let audio;
@@ -39,4 +48,3 @@ function nextSequence() {
   let randomNumber = Math.floor(Math.random() * 4);
   return randomNumber;
 }
-
