@@ -23,10 +23,10 @@ function startGame() {
 
 // Handle user turn and check each answer with click event
 function userTurn(event) {
-  let userChosenColour = event.target.id;
-  userClickedPattern.push(userChosenColour);
-  playSound(userChosenColour);
-  animatePress(userChosenColour);
+  let userChosenColor = event.target.id;
+  userClickedPattern.push(userChosenColor);
+  playSound(userChosenColor);
+  animatePress(userChosenColor);
   checkAnswer(userClickedPattern.length-1);
 }
 
@@ -69,9 +69,9 @@ function nextSequence() {
   userClickedPattern = [];
   $("h1").text(`Level ${level}`);
   let randomNumber = Math.floor(Math.random() * 4);
-  let randomChosenColour = buttonColors[randomNumber];
-  gamePattern.push(randomChosenColour);
-  $("#"+randomChosenColour).fadeOut(100, playSound(randomChosenColour)).fadeIn(100);
+  let randomChosenColor = buttonColors[randomNumber];
+  gamePattern.push(randomChosenColor);
+  $("#"+randomChosenColor).fadeOut(100, playSound(randomChosenColor)).fadeIn(100);
   level++;
 }
 
