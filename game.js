@@ -1,16 +1,9 @@
 const gamePattern = [];
-const userClickedPattern = [];
+let userClickedPattern = [];
 
 const buttonColours = ["red", "blue", "green", "yellow"];
 
 let level = 0;
-
-$(".btn").click(function(event) {
-  let userChosenColour = event.target.id;
-  userClickedPattern.push(userChosenColour);
-  playSound(userChosenColour);
-  animatePress(userChosenColour);
-});
 
 $(document).keydown(function() {
   if (level === 0) {
@@ -18,7 +11,25 @@ $(document).keydown(function() {
   }
 });
 
+$(".btn").click(function(event) {
+  let userChosenColour = event.target.id;
+  userClickedPattern.push(userChosenColour);
+  playSound(userChosenColour);
+  animatePress(userChosenColour);
+  checkAnswer(userClickedPattern.length-1);
+});
+
+function checkAnswer(currentLevel) {
+  if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) {
+    console.log("success");
+  }
+  else {
+    console.log("wrong");
+  }
+}
+
 function nextSequence() {
+  userClickedPattern = [];
   $("h1").text(`Level ${level}`);
   let randomNumber = Math.floor(Math.random() * 4);
   let randomChosenColour = buttonColours[randomNumber];
