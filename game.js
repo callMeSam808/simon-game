@@ -1,17 +1,21 @@
 const gamePattern = [];
+const userClickedPattern = [];
 
 const buttonColours = ["red", "blue", "green", "yellow"];
 
 let randomChosenColour = buttonColours[nextSequence()];
 gamePattern.push(randomChosenColour);
+$("#"+randomChosenColour).fadeOut(100, playSound(randomChosenColour)).fadeIn(100);
 
-$("#"+randomChosenColour).fadeOut(100, playSound).fadeIn(100);
+$(".btn").click(function(event) {
+  let userChosenColour = event.target.id;
+  userClickedPattern.push(userChosenColour);
+  playSound(userChosenColour);
+});
 
-
-
-function playSound() {
+function playSound(color) {
   let audio;
-  switch (randomChosenColour) {
+  switch (color) {
     case "red":
       audio = new Audio("sounds/red.mp3");
       audio.play();
